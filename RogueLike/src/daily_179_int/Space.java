@@ -1,5 +1,3 @@
-package daily_179_int;
-
 public abstract class Space {
 	protected char value;
 	

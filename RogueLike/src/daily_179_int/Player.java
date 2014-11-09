@@ -1,4 +1,4 @@
-package daily_179_int;
+
 
 public class Player extends Space {
 	private int moves = 100;
@@ -25,6 +25,12 @@ public class Player extends Space {
 	
 	public void moved() {
 		moves--;
+		if (moves == 0) {
+			System.out.println("Out of Moves!");
+		}
+		else {
+			System.out.println("Moves remaining: " + moves);
+		}
 	}
 	
 	

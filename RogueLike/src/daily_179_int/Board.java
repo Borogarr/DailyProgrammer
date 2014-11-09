@@ -1,7 +1,6 @@
-package daily_179_int;
-
 public class Board {
 	private char[][] board = new char[20][20];
+	private int score = 0;
 	
 	public Board() {
 		
@@ -40,11 +39,66 @@ public class Board {
 		return temp;
 	}
 	
-	public void movePlayer(int newRow, int newCol) {
+	public void movePlayer(String move) {
+		int[] newMove = new int[2];
+		newMove = findMove(move);
 		int[] temp = new int[2];
 		temp = findPlayer();
-		addSpot(newRow, newCol, '@');
+		
+		if (temp[0] == 1 && newMove[0] == -1 ) {
+			System.out.println("Walking into a wall.");
+			return;
+		}
+		else if (temp[0] == 18 && newMove[0] == 1 ) {
+			System.out.println("Walking into a wall.");
+			return;
+		}
+		else if (temp[1] == 1 && newMove[1] == -1 ) {
+			System.out.println("Walking into a wall.");
+			return;
+		}
+		else if (temp[1] == 18 && newMove[1] == 1 ) {
+			System.out.println("Walking into a wall.");
+			return;
+		}
+		
+		if (board[temp[0] + newMove[0]][temp[1] + newMove[1]] == '$') {
+			score++;;
+		}
+		
+		addSpot(temp[0] + newMove[0], temp[1] + newMove[1], '@');
 		addSpot(temp[0], temp[1], '-');
 		
 	}
+	
+	public static int[] findMove(String move) {
+		int temp[] = new int[2];
+		if (move.charAt(0) == 'W' || move.charAt(0) == 'w') {
+			temp[0] = -1;
+			temp[1] = 0;
+			return temp;
+		}
+		else if (move.charAt(0) == 'A' || move.charAt(0) == 'a') {
+			temp[0] = 0;
+			temp[1] = -1;
+			return temp;
+		}
+		else if (move.charAt(0) == 'S'|| move.charAt(0) == 's') {
+			temp[0] = 1;
+			temp[1] = 0;
+			return temp;
+		}
+		else if (move.charAt(0) == 'D' || move.charAt(0) == 'd') {
+			temp[0] = 0;
+			temp[1] = 1;
+			return temp;
+		}
+		return temp;
+	}
+	
+	public void printScore() {
+		System.out.println("Current Score: " + score);
+	}
+	
+	
 }

@@ -1,7 +1,4 @@
-package daily_179_int;
-
 public class Wall extends Space {
-	
 
 	public Wall() {
 		value = '%';

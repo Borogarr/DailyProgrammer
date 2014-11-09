@@ -1,4 +1,4 @@
-package daily_179_int;
+
 
 public class Empty extends Space {
 

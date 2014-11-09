@@ -1,4 +1,4 @@
-package daily_179_int;
+
 
 public class Coin extends Space {
 	private int pointValue = 1;
