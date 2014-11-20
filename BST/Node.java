@@ -1,5 +1,8 @@
-public class Node<T> {
+import java.util.ArrayList;
+
+public class Node {
 	public int data;
+	public boolean visited = false;
 	public Node left;
 	public Node right;
 	
@@ -167,21 +170,74 @@ public class Node<T> {
 	}
 	
 	public int hasPathSum(int value) {
-		if (left == null && right == null && this.data == value) {
+		if (value < this.data) {
+			return 0;
+		}
+	
+		value = value - this.data;
+		
+		int leftPath = 0;
+		int rightPath = 0;
+	
+		if (left == null && right == null && value == 0) {
 			return 1;
 		}
 		
-		if (left != null) {
-			hasPathSum(
+		
+		if (left != null) {     
+			leftPath = left.hasPathSum(value);
 		}
 		
 		if (right != null) {
-			valueRight += right.hasPathSum(valueRight);
+			rightPath = right.hasPathSum(value);
 		}
 		
-		return 0;
-		
+		return Math.max(leftPath, rightPath);
 	}
+	
+	public int numberOfPaths() {
+		int paths = 0;
+		
+		if (left == null && right == null) {
+			paths++;
+		}
+		
+		if (left != null) {
+			paths += left.numberOfPaths();
+		}
+		
+		if (right != null) {
+			paths += right.numberOfPaths();
+		}
+		
+		return paths;
+	}
+	
+	
+	
+	public void printPaths(ArrayList<Integer> list) {
+		
+		list.add((Integer)this.data);
+		
+		if (left == null & right == null) {
+			for (int i = 0; i < list.size(); i++) {
+				System.out.print(list.get(i) + " ");
+			}	
+			System.out.println();
+		}
+		
+		if (left != null) {
+			left.printPaths(list);
+		}
+		
+		if (right != null) {
+			right.printPaths(list);
+		}
+		
+		list.remove((Integer)this.data);
+	
+	}
+		
 	
 	public static void main (String[] args) {
 		Node root = new Node(4);
@@ -191,13 +247,22 @@ public class Node<T> {
 		root.insert(8);
 		root.insert(10);
 		root.insert(2);
+		root.insert(7);
+		root.insert(0);
 		
 		root.printTreeInOrder();
 		System.out.println("Tree Size: " + root.getSize());
 		System.out.println("Max Depth: " + root.maxDepth());
 		System.out.println("Min Value: " + root.minValue());
 		System.out.println("Max Value: " + root.maxValue());
-		System.out.println("Has Path Sum: 4 " + root.hasPathSum(4));
+		
+		int x = 24;
+		System.out.println("Has Path Sum: " + x + " " + root.hasPathSum(x));
+		System.out.println("Number of paths: " + root.numberOfPaths());
+		
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+		root.printPaths(list);
 	}
 
 
