@@ -237,6 +237,66 @@ public class Node {
 		list.remove((Integer)this.data);
 	
 	}
+	
+	public void mirror() {
+		
+		Node temp = this.left;
+		this.left = this.right;
+		this.right = temp;
+		
+		if (left != null) {
+			left.mirror();
+		}
+		
+		if (right != null) {
+			right.mirror();
+		}
+	
+	}
+	
+	public void doubleTree() {
+	
+		Node newNode = new Node(this.data);
+		
+		newNode.left = this.left;
+		this.left = newNode;
+		
+		if (left.left != null) {
+			left.left.doubleTree();
+		}
+		
+		if (right != null) {
+			right.doubleTree();
+		}
+	
+	}
+	
+	public boolean sameTree(Node node1) {
+		boolean leftTree = true, rightTree = true;
+		
+		if (node1.data != this.data) {
+			return false;
+		}
+		
+		if (node1.left != null && left == null || node1.left == null && left != null) {
+			return false;
+		}
+		
+		if (node1.right != null && right == null || node1.right == null && right != null) {
+			return false;
+		}
+		
+		if (node1.left != null && this.left != null) {
+			leftTree = left.sameTree(node1.left);
+		}
+		
+		if (node1.right != null && this.right != null) {
+			rightTree = right.sameTree(node1.right);
+		}
+		
+		return (leftTree && rightTree);
+	
+	}
 		
 	
 	public static void main (String[] args) {
@@ -250,7 +310,18 @@ public class Node {
 		root.insert(7);
 		root.insert(0);
 		
+		Node root2 = new Node(4);
+		root2.insert(5);
+		root2.insert(3);
+		root2.insert(1);
+		root2.insert(8);
+		root2.insert(10);
+		root2.insert(2);
+		root2.insert(7);
+		root2.insert(0);
+		
 		root.printTreeInOrder();
+		root2.printTreeInOrder();
 		System.out.println("Tree Size: " + root.getSize());
 		System.out.println("Max Depth: " + root.maxDepth());
 		System.out.println("Min Value: " + root.minValue());
@@ -263,6 +334,11 @@ public class Node {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		
 		root.printPaths(list);
+		
+		boolean xxx = root.sameTree(root2);
+		System.out.println(xxx);
+		
+		
 	}
 
 
