@@ -9,8 +9,15 @@ public class BackTracking {
 		this.num = num;
 		numArray = new int[2*num];
 		
-		for (int i = 0; i < 2*num; i++) {
+		numArray[0] = num;
+		
+		for (int i = 1; i < 2*num; i++) {
+			if (i == num+1) {
+				numArray[i] = num;
+			}
+			else {
 			numArray[i] = 1;
+			}
 		}
 	}
 	
@@ -46,14 +53,19 @@ public class BackTracking {
 	
 	public boolean run() {
 	
+		if (num < 3) {
+			return false;
+		}
+	
 		int sum = 0;
 		boolean ret = false;
 		boolean breakOut = false;
+		boolean incrementSuccess = true;
 		
 		while (ret != true) {
 			sum = 0;
 			breakOut = false;
-			
+			print();
 			if (checkNumOfDigits()) {
 				for (int i = 1; i <= num; i++) {
 					for (int j = 0; j < 2*num; j++) {
@@ -81,6 +93,10 @@ public class BackTracking {
 			
 			increment(num*2-1);
 			
+			if (numArray[0] == 1) {
+				return false;
+			}
+			
 		}
 		
 		return ret;
@@ -89,6 +105,11 @@ public class BackTracking {
 	}
 	
 	public void increment(int index) {
+	
+		if (index == -1) {
+			return;
+		}
+	
 		if (numArray[index] == num) {
 			numArray[index] = 1;
 			increment(index - 1);
@@ -96,10 +117,12 @@ public class BackTracking {
 		else {
 			numArray[index]++;
 		}
+		
+		
 	}
 	
 	public static void main(String[] args) {
-		BackTracking back = new BackTracking(3);
+		BackTracking back = new BackTracking(8);
 		boolean x = back.run();
 		System.out.println(x);
 		back.print();
