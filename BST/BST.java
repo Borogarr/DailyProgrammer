@@ -1,54 +1,50 @@
-import java.util.ArrayList;
+import java.util.Arrays;
+public class BST {
 
-public class Node {
-	public int data;
-	public Node left;
-	public Node right;
+	private Node root;
 	
-	public Node(int data) {
-		this.data = data;
-		this.left = null;
-		this.right = null;
+	public void BST() {
+		root = null;
 	}
-	
+
 	public void addLeft(int data) {
 		Node node = new Node(data);
-		this.left = node;
+		root.left = node;
 	}
 	
 	public void addRight(int data) {
 		Node node = new Node(data);
-		this.right = node;
+		root.right = node;
 	}
 
 	public int getSize() {
 		int size = 1;
 		
-		if (left != null) {
-			size += left.getSize();
+		if (root.left != null) {
+			size += root.left.getSize();
 		}
 		
-		if (right != null) {
-			size += right.getSize();
+		if (root.right != null) {
+			size += root.right.getSize();
 		}
 		
 		return size;
 	}
 	
 	public void print() {
-		System.out.println(this.data);
+		System.out.println(root.data);
 	}
 	
 	public void printTreeInOrder() {
 		
-		if (left != null) {
-			left.printTreeInOrder();
+		if (root.left != null) {
+			root.left.printTreeInOrder();
 		}
 		
 		print();
 		
-		if (right != null) {
-			right.printTreeInOrder();
+		if (root.right != null) {
+			root.right.printTreeInOrder();
 		}
 		
 	}
@@ -339,6 +335,5 @@ public class Node {
 		
 		
 	}
-
 
 }
