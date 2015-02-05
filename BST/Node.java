@@ -305,6 +305,7 @@ public class Node {
 		root.insert(3);
 		root.insert(1);
 		root.insert(8);
+		root.insert(2);
 		root.insert(10);
 		root.insert(2);
 		root.insert(7);
