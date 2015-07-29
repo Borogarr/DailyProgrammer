@@ -1,0 +1,35 @@
+{
+	"name": "Arthas",
+	"abilities": [{
+		"key": "Q",
+		"ability": "Death Coil",
+		"description": "Heals or deals damage"
+	}, {
+		"key": "W",
+		"ability": "Howling Blast"
+	}, {
+		"key": "E",
+		"ability": "Frozen Wastes"
+	}, {
+		"key": "R",
+		"ability": "Army of the Dead"
+	}, {
+		"key": "R",
+		"ability": "Summon Sindragosa"
+	}],
+	"talents": [{
+		"level": 1,
+		"choices": [{
+			"name": "Block",
+			"description": "Blocks something"
+		}, {
+			"name": "Frost Presence",
+			"description": "Increases something"
+		}]
+	}],
+	"attributes": [{
+	"health": 10,
+	"mobility": 6,
+	"utility": 8
+	}]
+} 
